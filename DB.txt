@@ -1,0 +1,16 @@
+Databaseformat:
+
+ID (PK)
+Seed
+Character
+Game Version
+Console/PC
+Description/Why Play this
+Starting Items -> items DB
+Key Items -> items db
+Likes
+Dislikes
+Submitted By
+Submitted (timestamp)
+
++ captcha
