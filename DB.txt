@@ -1,16 +1,15 @@
 Databaseformat:
 
-ID (PK)
-Seed
+Seed (ID)
 Character
-Game Version
-Console/PC
 Description/Why Play this
 Starting Items -> items DB
 Key Items -> items db
+Game Version
+Console/PC
 Likes
 Dislikes
 Submitted By
 Submitted (timestamp)
 
-+ captcha
++ captcha for like + submission
