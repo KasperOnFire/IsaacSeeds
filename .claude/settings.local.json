@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Kaspe\\\\Repos\\\\IsaacSeeds\\\\frontend\\\\src\\\\lib\\\\components\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Kaspe\\\\Repos\\\\IsaacSeeds\\\\frontend\\\\src\\\\routes\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Kaspe\\\\Repos\\\\IsaacSeeds\\\\frontend\\\\static\\\\sprites\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Kaspe\\\\Repos\\\\IsaacSeeds\\\\backend\")",
+      "Bash(npm install *)",
+      "Read(//usr/local/**)",
+      "Read(//c/Users/Kaspe/.nvm/versions/**)",
+      "PowerShell($env:PATH -split ';' | Where-Object { $_ -match 'node|npm' })"
+    ]
+  }
+}
