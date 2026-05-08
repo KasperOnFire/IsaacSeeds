@@ -21,7 +21,10 @@
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-		if (e.key === 'Tab') { e.preventDefault(); isTainted = !isTainted; }
+		if (e.key === 'Tab' || e.key === 'w' || e.key === 'W' || e.key === 's' || e.key === 'S') {
+			e.preventDefault();
+			isTainted = !isTainted;
+		}
 	}
 
 	$effect(() => {
@@ -83,8 +86,8 @@
     2. Seeds — natural scroll below
 -->
 
-<!-- ── Hero section ─────────────────────────────────────────────────────── -->
-<div class="min-h-screen flex flex-col items-center justify-center py-8 gap-3">
+<!-- ── Character section ─────────────────────────────────────────────────── -->
+<div class="flex flex-col items-center pt-8 pb-4 gap-3">
 
 	<!-- Normal / Tainted tabs -->
 	<div class="flex" style="gap:0;">

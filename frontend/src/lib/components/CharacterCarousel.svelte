@@ -45,8 +45,8 @@
 
 	function handleKey(e: KeyboardEvent) {
 		if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-		if (e.key === 'ArrowLeft')  { e.preventDefault(); navigate(-1); }
-		if (e.key === 'ArrowRight') { e.preventDefault(); navigate(1); }
+		if (e.key === 'ArrowLeft'  || e.key === 'a' || e.key === 'A') { e.preventDefault(); navigate(-1); }
+		if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') { e.preventDefault(); navigate(1);  }
 	}
 
 	const glowColor = $derived(isTainted ? '#c23b3b' : '#e8a020');

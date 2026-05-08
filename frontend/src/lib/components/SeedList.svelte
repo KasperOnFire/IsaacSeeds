@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
 	import type { Seed } from '$lib/types';
 	import { getSeeds } from '$lib/pocketbase';
 	import SeedCard from './SeedCard.svelte';
@@ -22,7 +21,6 @@
 	});
 
 	async function load(charId: string, p = 1) {
-		if (!browser) return;
 		loading = true;
 		error = '';
 		try {

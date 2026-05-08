@@ -8,11 +8,22 @@ const PB_URL = browser
 export const pb = new PocketBase(PB_URL);
 
 export async function getSeeds(character: string, page = 1, perPage = 20) {
-	return pb.collection('seeds').getList(page, perPage, {
-		// show everything that isn't explicitly removed (handles manually-added entries too)
-		filter: `character = "${character}" && status != "removed"`,
-		sort: '-upvotes,-created'
-	});
+	// Use plain fetch so the URL is 100% transparent (SDK v0.21 had hydration issues in Svelte 5)
+	const url = new URL(`${PB_URL}/api/collections/seeds/records`);
+	url.searchParams.set('filter', `character = "${character}"`);
+	url.searchParams.set('sort', '-upvotes,-created');
+	url.searchParams.set('page',    String(page));
+	url.searchParams.set('perPage', String(perPage));
+
+	const res = await fetch(url.toString());
+	if (!res.ok) throw new Error(`PocketBase ${res.status}: ${await res.text()}`);
+	return res.json() as Promise<{
+		items:      Record<string, unknown>[];
+		page:       number;
+		perPage:    number;
+		totalItems: number;
+		totalPages: number;
+	}>;
 }
 
 export async function upvoteSeed(seedId: string, sessionToken: string) {
