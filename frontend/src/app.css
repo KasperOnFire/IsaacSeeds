@@ -1,24 +1,30 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Cinzel:wght@700&display=swap');
 
 @theme {
-	--color-isaac-bg: #0d0512;
-	--color-isaac-surface: #1a0a2e;
-	--color-isaac-border: #2d1a4a;
+	--color-isaac-bg: #0a0210;
+	--color-isaac-paper: #dfd3d9;
+	--color-isaac-paper-dark: #b8a8b0;
+	--color-isaac-ink: #1a1018;
 	--color-isaac-red: #8b1a1a;
 	--color-isaac-red-light: #c23b3b;
 	--color-isaac-gold: #c9a227;
 	--color-isaac-gold-light: #e8c44a;
-	--color-isaac-purple: #4a1a6e;
-	--color-isaac-tainted: #3d0a0a;
+	--color-isaac-tainted: #6e1010;
 
 	--font-display: "Cinzel", serif;
-	--font-body: "Crimson Text", serif;
+	--font-hand: "Kalam", cursive;
 }
 
 body {
-	background-color: var(--color-isaac-bg);
-	color: #e8dcc8;
-	font-family: var(--font-body);
+	/* Game texture (background_dogma.png) tiled, with a darkening colour underneath */
+	background-color: #06030c;
+	background-image: url('/bg.png');
+	background-repeat: repeat;
+	background-size: 512px 512px;
+	/* Blend the image down so it reads as dark without being flat */
+	color: var(--color-isaac-ink);
+	font-family: var(--font-hand);
 	min-height: 100vh;
 }
 
@@ -30,13 +36,16 @@ img {
 	image-rendering: pixelated;
 }
 
-::-webkit-scrollbar {
-	width: 6px;
+/* Paper note — matches the game's crumpled gray-white paper (genericpopup.png / charactermenu.png) */
+.paper {
+	/* Slightly warm off-white with a subtle gradient, matching the light gray paper in the game */
+	background: linear-gradient(150deg, #ddd5d8 0%, #cfc6ca 40%, #d8d0d4 70%, #d0c8cc 100%);
+	box-shadow:
+		3px 3px 0 #9a8f93,        /* offset block shadow = paper sitting on dark surface */
+		5px 5px 16px rgba(0,0,0,0.6);
+	border-radius: 2px 3px 3px 2px / 3px 2px 2px 3px;
 }
-::-webkit-scrollbar-track {
-	background: var(--color-isaac-surface);
-}
-::-webkit-scrollbar-thumb {
-	background: var(--color-isaac-border);
-	border-radius: 3px;
-}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #110818; }
+::-webkit-scrollbar-thumb { background: #2d1a3a; border-radius: 3px; }

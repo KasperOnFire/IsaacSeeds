@@ -9,7 +9,8 @@ export const pb = new PocketBase(PB_URL);
 
 export async function getSeeds(character: string, page = 1, perPage = 20) {
 	return pb.collection('seeds').getList(page, perPage, {
-		filter: `character = "${character}" && status = "active"`,
+		// show everything that isn't explicitly removed (handles manually-added entries too)
+		filter: `character = "${character}" && status != "removed"`,
 		sort: '-upvotes,-created'
 	});
 }

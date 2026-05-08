@@ -3,21 +3,31 @@
 	let { children } = $props();
 </script>
 
-<div class="min-h-screen flex flex-col">
-	<header class="border-b border-[#2d1a4a] px-6 py-3 flex items-center gap-4">
-		<h1 class="font-[Cinzel] text-xl font-bold text-[#c9a227] tracking-widest uppercase">
-			Isaac Seeds
-		</h1>
-		<span class="text-xs text-[#6a5a7a] font-[Crimson_Text] italic">
-			Community seed finder · Repentance+
-		</span>
-	</header>
+<!--
+  Layer order (bottom → top):
+    0  body background image (bg.png tiled)
+    1  darkening overlay  (semi-transparent black, fixed)
+    2  vignette overlay   (radial gradient to black at edges, fixed)
+    3  page content       (z-10, relative)
+    99 modals / popovers
+-->
 
+<!-- Darkening overlay — makes the game texture slightly darker -->
+<div class="fixed inset-0 pointer-events-none"
+	style="background: rgba(4,1,10,0.52); z-index: 1;"></div>
+
+<!-- Vignette — hard fade to black at screen edges -->
+<div class="fixed inset-0 pointer-events-none"
+	style="background: radial-gradient(ellipse at 50% 45%, transparent 32%, rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.97) 100%); z-index: 2;"></div>
+
+<!-- Page content sits above both overlays -->
+<div class="relative flex flex-col min-h-screen" style="z-index: 3;">
 	<main class="flex-1">
 		{@render children()}
 	</main>
 
-	<footer class="border-t border-[#2d1a4a] px-6 py-3 text-center text-xs text-[#4a3a5a]">
+	<p class="text-center py-3"
+		style="font-family:'Kalam',cursive; font-size:0.68rem; color:#5a5060; letter-spacing:0.06em; opacity:0.6;">
 		Fan project · Not affiliated with Nicalis or Edmund McMillen
-	</footer>
+	</p>
 </div>
