@@ -122,16 +122,6 @@
 	<div class="paper relative flex flex-col items-center"
 		style="width: min(520px, calc(100vw - 1rem)); padding: 1.4rem 1.2rem 1.2rem;">
 
-		<!-- Paper fold creases -->
-		<div class="absolute inset-0 pointer-events-none overflow-hidden" style="border-radius:inherit;">
-			<div style="position:absolute;inset:0;
-				background:
-					linear-gradient(90deg, transparent 49.3%, rgba(0,0,0,0.08) 49.3%, rgba(0,0,0,0.08) 50.7%, transparent 50.7%),
-					linear-gradient(0deg,  transparent 33%,   rgba(0,0,0,0.05) 33%,   rgba(0,0,0,0.05) 33.5%,  transparent 33.5%),
-					linear-gradient(0deg,  transparent 66%,   rgba(0,0,0,0.05) 66%,   rgba(0,0,0,0.05) 66.5%,  transparent 66.5%);">
-			</div>
-		</div>
-
 		<!-- WHO AM I? -->
 		<h2 class="relative z-10 mb-1" style="
 			font-family: 'Cormorant Garamond', serif;
