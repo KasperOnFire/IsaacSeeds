@@ -52,6 +52,15 @@ export const actions: Actions = {
 
 		const formattedSeed = `${rawSeed.slice(0, 4)} ${rawSeed.slice(4)}`;
 
+		// Reject duplicate seed code for the same character
+		const dupRes = await fetch(`${PB_URL}/api/collections/seeds/records?filter=seed%3D%22${encodeURIComponent(formattedSeed)}%22%26%26character%3D%22${encodeURIComponent(character)}%22&perPage=1`);
+		if (dupRes.ok) {
+			const dup = await dupRes.json();
+			if (dup.totalItems > 0) {
+				return fail(400, { error: 'This seed has already been submitted for this character.' });
+			}
+		}
+
 		const res = await fetch(`${PB_URL}/api/collections/seeds/records`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },

@@ -52,15 +52,17 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	const seedData = await seedRes.json();
 
 	const field = type === 'upvote' ? 'upvotes' : 'flags';
+	const newVal = (seedData[field] ?? 0) + 1;
+	const patchBody: Record<string, unknown> = { [field]: newVal };
+	if (type === 'flag' && newVal >= 3) {
+		patchBody.status = 'removed';
+	}
 	const patchRes = await fetch(`${PB_URL}/api/collections/seeds/records/${seedId}`, {
 		method: 'PATCH',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ [field]: (seedData[field] ?? 0) + 1 })
+		body: JSON.stringify(patchBody)
 	});
-
-	if (!patchRes.ok) {
-		return json({ error: 'Failed to record vote.' }, { status: 500 });
-	}
+	if (!patchRes.ok) return json({ error: 'Failed to record vote.' }, { status: 500 });
 
 	// Record vote for dedup (best effort — collection may be admin-only)
 	await fetch(`${PB_URL}/api/collections/votes/records`, {
