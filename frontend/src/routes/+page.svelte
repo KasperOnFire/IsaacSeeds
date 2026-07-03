@@ -117,10 +117,10 @@
 	</div>
 
 	<!-- Character selection paper note -->
-	<!-- Note is 520 px wide; carousel uses H_RADIUS=200, outermost char at ~213 px from centre,
-	     leaving ~47 px of clear paper on each side before the note edge -->
+	<!-- Note is 600 px wide; carousel uses H_RADIUS=240, outermost char at ~255 px from centre,
+	     leaving clear paper on each side before the note edge -->
 	<div class="paper relative flex flex-col items-center"
-		style="width: min(520px, calc(100vw - 1rem)); padding: 1.4rem 1.2rem 1.2rem;">
+		style="width: min(600px, calc(100vw - 1rem)); padding: 1.4rem 1.2rem 1.2rem;">
 
 		<!-- WHO AM I? -->
 		<h2 class="relative z-10 mb-1" style="

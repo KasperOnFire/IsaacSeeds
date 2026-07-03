@@ -11,13 +11,14 @@
 		isTainted: boolean;
 	} = $props();
 
-	// Ring geometry — gap reduced ~30% vs previous version
+	// Ring geometry — scaled up ~20% from previous version (pixel art holds up fine at larger sizes)
 	const SLOTS     = 10;
-	const H_RADIUS  = 200;  // px from centre to character position
-	const V_RADIUS  = 28;   // vertical depth tilt
+	const H_RADIUS  = 240;  // px from centre to character position
+	const V_RADIUS  = 34;   // vertical depth tilt
 	const SCALE_MAX = 1.5;
 	const SCALE_MIN = 0.28;
 	const VISIBLE   = 3;    // show 3 each side = 7 total
+	const IMG_SIZE  = 78;   // base sprite render size in px
 
 	function ringPos(offset: number) {
 		const angle = (offset / SLOTS) * 2 * Math.PI;
@@ -55,7 +56,7 @@
 <svelte:window onkeydown={handleKey} />
 
 <!-- overflow:hidden keeps all characters within the note boundary -->
-<div class="relative w-full select-none" style="height:186px; overflow:hidden;">
+<div class="relative w-full select-none" style="height:224px; overflow:hidden;">
 	<div class="absolute inset-0 flex items-center justify-center">
 		{#each Array.from({ length: VISIBLE * 2 + 1 }, (_, i) => i - VISIBLE) as offset (offset)}
 			{@const { char, idx } = charAt(offset)}
@@ -68,7 +69,7 @@
 					transform: translate({x}px, {y}px) scale({scale});
 					opacity: {opacity};
 					z-index: {z};
-					width: 64px; height: 64px;
+					width: {IMG_SIZE}px; height: {IMG_SIZE}px;
 					filter: {isFront
 						? `drop-shadow(0 0 10px ${glowColor}99) brightness(1.1)`
 						: `brightness(0.55) saturate(0.5)`};
@@ -80,7 +81,7 @@
 				<img
 					src={char.spriteUrl}
 					alt={char.name}
-					style="width:64px; height:64px; object-fit:contain; image-rendering:pixelated;"
+					style="width:{IMG_SIZE}px; height:{IMG_SIZE}px; object-fit:contain; image-rendering:pixelated;"
 					onerror={(e) => ((e.currentTarget as HTMLImageElement).style.opacity = '0')}
 				/>
 			</button>
