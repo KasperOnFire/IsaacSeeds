@@ -40,16 +40,16 @@
 	}
 </script>
 
-<div class="rounded-sm p-4 flex flex-col gap-2.5 transition-shadow"
-	style="background:#fff; border:1px solid #e0d8d0; box-shadow: 1px 1px 4px rgba(0,0,0,0.06); hover:shadow-md;">
+<div class="rounded-sm p-4 flex flex-col gap-2.5"
+	style="background:#0f0618; border:1px solid #2a1a3e; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
 
 	<!-- Top row: seed code + copy label + upvote -->
 	<div class="flex items-start gap-3">
 		<button
 			class="font-mono text-xl font-bold tracking-[0.2em] transition-colors cursor-pointer flex-shrink-0"
-			style="color:#2a1810;"
-			onmouseenter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = '#c9a227')}
-			onmouseleave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = '#2a1810')}
+			style="color:#c9a227;"
+			onmouseenter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = '#f0c84a')}
+			onmouseleave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = '#c9a227')}
 			onclick={copyToClipboard}
 			title="Click to copy"
 		>
@@ -57,7 +57,7 @@
 		</button>
 
 		{#if copied}
-			<span class="text-xs mt-1.5" style="color:#2a6b2a; font-family:'Kalam',cursive;">Copied!</span>
+			<span class="text-xs mt-1.5" style="color:#5ab85a; font-family:'Kalam',cursive;">Copied!</span>
 		{/if}
 
 		<div class="flex-1"></div>
@@ -65,9 +65,9 @@
 		<!-- Upvote -->
 		<button
 			class="flex items-center gap-1 text-sm cursor-pointer transition-colors"
-			style="color: {voted ? '#c9a227' : '#b0a090'};"
+			style="color: {voted ? '#c9a227' : '#4a3a5a'};"
 			onmouseenter={(e) => { if (!voted) (e.currentTarget as HTMLButtonElement).style.color = '#c9a227'; }}
-			onmouseleave={(e) => { if (!voted) (e.currentTarget as HTMLButtonElement).style.color = '#b0a090'; }}
+			onmouseleave={(e) => { if (!voted) (e.currentTarget as HTMLButtonElement).style.color = '#4a3a5a'; }}
 			onclick={handleUpvote}
 			disabled={voted}
 			title="Upvote"
@@ -81,20 +81,20 @@
 	<div class="flex items-center gap-3">
 		<div class="flex items-center gap-0.5">
 			{#each [1, 2, 3, 4, 5] as star}
-				<span style="font-size:0.85rem; color:{star <= seed.difficulty ? '#c9a227' : '#ddd0c0'};">★</span>
+				<span style="font-size:0.85rem; color:{star <= seed.difficulty ? '#c9a227' : '#2a1a3e'};">★</span>
 			{/each}
 		</div>
-		<span style="font-family:'Cinzel',serif; font-size:0.65rem; color:#8a7868; text-transform:uppercase; letter-spacing:0.06em;">{versionLabel}</span>
+		<span style="font-family:'Cinzel',serif; font-size:0.65rem; color:#5a4a6a; text-transform:uppercase; letter-spacing:0.06em;">{versionLabel}</span>
 	</div>
 
 	<!-- Description -->
 	{#if seed.description}
-		<p class="text-sm leading-relaxed" style="color:#4a3828; font-family:'Kalam',cursive;">{seed.description}</p>
+		<p class="text-sm leading-relaxed" style="color:#c0b8c8; font-family:'Kalam',cursive;">{seed.description}</p>
 	{/if}
 
 	<!-- Notable items -->
 	{#if seed.notable_items}
-		<p class="text-xs italic" style="color:#7a6858; font-family:'Kalam',cursive;">Notable: {seed.notable_items}</p>
+		<p class="text-xs italic" style="color:#7a6888; font-family:'Kalam',cursive;">Notable: {seed.notable_items}</p>
 	{/if}
 
 	<!-- Tags -->
@@ -105,7 +105,7 @@
 				{#if tag}
 					<span
 						class="px-2 py-0.5 rounded-sm text-[10px] uppercase tracking-wider"
-						style="font-family:'Cinzel',serif; background:{tag.color}22; border:1px solid {tag.color}88; color:{tag.color};"
+						style="font-family:'Cinzel',serif; background:{tag.color}18; border:1px solid {tag.color}66; color:{tag.color}cc;"
 					>
 						{tag.label}
 					</span>
@@ -115,15 +115,15 @@
 	{/if}
 
 	<!-- Footer: date + flag -->
-	<div class="flex items-center gap-2 pt-1.5" style="border-top: 1px solid #ede5dd;">
-		<span class="text-[10px] flex-1" style="color:#9a8878; font-family:'Kalam',cursive;">
+	<div class="flex items-center gap-2 pt-1.5" style="border-top: 1px solid #1e0f2e;">
+		<span class="text-[10px] flex-1" style="color:#4a3a5a; font-family:'Kalam',cursive;">
 			{new Date(seed.created).toLocaleDateString()}
 		</span>
 		<button
 			class="text-[10px] cursor-pointer transition-colors"
-			style="color:{flagged ? '#c23b3b' : '#c0b0a0'}; font-family:'Kalam',cursive;"
+			style="color:{flagged ? '#c23b3b' : '#3a2a4a'}; font-family:'Kalam',cursive;"
 			onmouseenter={(e) => { if (!flagged) (e.currentTarget as HTMLButtonElement).style.color = '#c23b3b'; }}
-			onmouseleave={(e) => { if (!flagged) (e.currentTarget as HTMLButtonElement).style.color = '#c0b0a0'; }}
+			onmouseleave={(e) => { if (!flagged) (e.currentTarget as HTMLButtonElement).style.color = '#3a2a4a'; }}
 			onclick={handleFlag}
 			disabled={flagged}
 			title="Flag as inappropriate"
