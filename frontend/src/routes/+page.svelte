@@ -18,6 +18,12 @@
 	);
 
 	let showSubmit = $state(false);
+	let seedRefreshTick = $state(0);
+
+	function handleSubmitSuccess() {
+		seedRefreshTick++;
+		// Keep modal open to show success state; user closes manually
+	}
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
@@ -79,6 +85,9 @@
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
+<svelte:head>
+	<title>{selectedCharacter.name} Seeds — Isaac Seeds</title>
+</svelte:head>
 
 <!--
   Two-section layout:
@@ -215,9 +224,9 @@
 		>+ submit seed</button>
 	</div>
 
-	<SeedList characterId={selectedCharacter.id} />
+	<SeedList characterId={selectedCharacter.id} refreshTick={seedRefreshTick} />
 </div>
 
 {#if showSubmit}
-	<SubmitModal character={selectedCharacter} onclose={() => (showSubmit = false)} />
+	<SubmitModal character={selectedCharacter} onclose={() => (showSubmit = false)} onsuccess={handleSubmitSuccess} />
 {/if}

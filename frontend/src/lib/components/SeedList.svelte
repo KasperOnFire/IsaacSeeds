@@ -4,7 +4,7 @@
 	import { getSeeds } from '$lib/pocketbase';
 	import SeedCard from './SeedCard.svelte';
 
-	let { characterId }: { characterId: string } = $props();
+	let { characterId, refreshTick = 0 }: { characterId: string; refreshTick?: number } = $props();
 
 	let seeds = $state<Seed[]>([]);
 	let loading = $state(true);
@@ -40,6 +40,8 @@
 	}
 
 	$effect(() => {
+		// refreshTick is read so the effect re-runs when the parent increments it
+		void refreshTick;
 		load(characterId, 1);
 	});
 

@@ -6,10 +6,12 @@
 
 	let {
 		character,
-		onclose
+		onclose,
+		onsuccess
 	}: {
 		character: Character;
 		onclose: () => void;
+		onsuccess?: () => void;
 	} = $props();
 
 	let seedInput = $state('');
@@ -101,6 +103,7 @@
 						submitting = false;
 						if (result.type === 'success') {
 							success = true;
+							onsuccess?.();
 						} else if (result.type === 'failure') {
 							serverError = (result.data as { error?: string })?.error ?? 'Submission failed.';
 						}
