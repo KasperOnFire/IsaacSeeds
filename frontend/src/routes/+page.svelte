@@ -101,14 +101,14 @@
 	<!-- Normal / Tainted tabs -->
 	<div class="flex" style="gap:0;">
 		<button onclick={() => (isTainted = false)} class="cursor-pointer px-6 py-1.5 transition-all"
-			style="font-family:'Kalam',cursive; font-weight:700; font-size:0.9rem;
+			style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:0.9rem;
 				color:{!isTainted ? accentColor : '#5a4858'};
 				border-bottom: 2px solid {!isTainted ? accentColor : 'transparent'};
 				letter-spacing:0.06em;">
 			Normal
 		</button>
 		<button onclick={() => (isTainted = true)} class="cursor-pointer px-6 py-1.5 transition-all"
-			style="font-family:'Kalam',cursive; font-weight:700; font-size:0.9rem;
+			style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:0.9rem;
 				color:{isTainted ? accentColor : '#5a4858'};
 				border-bottom: 2px solid {isTainted ? accentColor : 'transparent'};
 				letter-spacing:0.06em;">
@@ -134,7 +134,7 @@
 
 		<!-- WHO AM I? -->
 		<h2 class="relative z-10 mb-1" style="
-			font-family: 'Kalam', cursive;
+			font-family: 'Cormorant Garamond', serif;
 			font-weight: 700;
 			font-size: 1.5rem;
 			color: #0d0810;
@@ -155,13 +155,13 @@
 		<div class="relative z-10 flex items-center gap-3 mt-1 w-full justify-center">
 			<button
 				class="cursor-pointer transition-all hover:scale-125 active:scale-95 select-none"
-				style="font-family:'Kalam',cursive; font-weight:700; font-size:1.6rem; color:{accentColor}; line-height:1; text-shadow:0 0 8px {accentColor}44;"
+				style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.6rem; color:{accentColor}; line-height:1; text-shadow:0 0 8px {accentColor}44;"
 				onclick={() => { selectedIndex = ((selectedIndex - 1) + (isTainted ? TAINTED_CHARACTERS.length : BASE_CHARACTERS.length)) % (isTainted ? TAINTED_CHARACTERS.length : BASE_CHARACTERS.length); }}
 				aria-label="Previous"
 			>←</button>
 
 			<h3 style="
-				font-family: 'Kalam', cursive;
+				font-family: 'Cormorant Garamond', serif;
 				font-weight: 700;
 				font-size: 1.35rem;
 				color: {accentColor};
@@ -173,7 +173,7 @@
 
 			<button
 				class="cursor-pointer transition-all hover:scale-125 active:scale-95 select-none"
-				style="font-family:'Kalam',cursive; font-weight:700; font-size:1.6rem; color:{accentColor}; line-height:1; text-shadow:0 0 8px {accentColor}44;"
+				style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.6rem; color:{accentColor}; line-height:1; text-shadow:0 0 8px {accentColor}44;"
 				onclick={() => { selectedIndex = (selectedIndex + 1) % (isTainted ? TAINTED_CHARACTERS.length : BASE_CHARACTERS.length); }}
 				aria-label="Next"
 			>→</button>
@@ -182,7 +182,7 @@
 		<!-- Hearts -->
 		<div class="relative z-10 flex items-center justify-center gap-0.5 mt-2 min-h-[18px]">
 			{#if selectedCharacter.hearts.length === 0}
-				<span style="font-family:'Kalam',cursive; font-size:0.7rem; color:#7a6068; letter-spacing:0.15em;">Holy Mantle</span>
+				<span style="font-family:'Cormorant Garamond',serif; font-size:0.7rem; color:#7a6068; letter-spacing:0.15em;">Holy Mantle</span>
 			{:else}
 				{#each selectedCharacter.hearts as slot}
 					{@html heartSvg(slot)}
@@ -194,13 +194,13 @@
 		<div class="relative z-10 flex items-center justify-center gap-5 mt-2">
 			<div class="flex items-center gap-1.5">
 				{@html damageSvg()}
-				<span style="font-family:'Kalam',cursive; font-weight:700; font-size:0.9rem; color:#3a2020; letter-spacing:0.04em;">
+				<span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:0.9rem; color:#3a2020; letter-spacing:0.04em;">
 					{selectedCharacter.damage ?? '?'}
 				</span>
 			</div>
 			<div class="flex items-center gap-1.5">
 				{@html speedSvg()}
-				<span style="font-family:'Kalam',cursive; font-weight:700; font-size:0.9rem; color:#3a2020; letter-spacing:0.04em;">
+				<span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:0.9rem; color:#3a2020; letter-spacing:0.04em;">
 					{selectedCharacter.speed ?? '?'}
 				</span>
 			</div>
@@ -212,12 +212,12 @@
 <div class="w-full max-w-2xl mx-auto px-4 pb-10">
 
 	<div class="flex items-center justify-between mb-3 px-1">
-		<span style="font-family:'Kalam',cursive; font-weight:700; font-size:1rem; color:#d0c8c0;">
+		<span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1rem; color:#d0c8c0;">
 			{selectedCharacter.name}'s seeds
 		</span>
 		<button
 			class="cursor-pointer transition-all px-3 py-1"
-			style="font-family:'Kalam',cursive; font-weight:700; font-size:0.8rem; color:{accentColor}; border:1.5px solid {accentColor}; background:transparent; box-shadow:1px 1px 0 rgba(0,0,0,0.3);"
+			style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:0.8rem; color:{accentColor}; border:1.5px solid {accentColor}; background:transparent; box-shadow:1px 1px 0 rgba(0,0,0,0.3);"
 			onmouseenter={(e) => (e.currentTarget.style.background = accentColor + '22')}
 			onmouseleave={(e) => (e.currentTarget.style.background = 'transparent')}
 			onclick={() => (showSubmit = true)}

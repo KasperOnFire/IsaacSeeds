@@ -27,7 +27,7 @@
 	</main>
 
 	<p class="text-center py-3"
-		style="font-family:'Kalam',cursive; font-size:0.68rem; color:#5a5060; letter-spacing:0.06em; opacity:0.6;">
+		style="font-family:'Cormorant Garamond',serif; font-size:0.68rem; color:#5a5060; letter-spacing:0.06em; opacity:0.6;">
 		Fan project · Not affiliated with Nicalis or Edmund McMillen
 	</p>
 </div>

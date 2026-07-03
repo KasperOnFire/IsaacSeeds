@@ -71,7 +71,7 @@
 	{:else if seeds.length === 0}
 		<div class="text-center py-12 rounded-sm" style="border: 1px dashed #3a2a4a;">
 			<p class="text-sm tracking-wider" style="color:#8a7888; font-family:'Cinzel',serif;">No seeds yet</p>
-			<p class="text-xs mt-1" style="color:#5a4a68; font-family:'Kalam',cursive;">Be the first to submit a seed for this character</p>
+			<p class="text-xs mt-1" style="color:#5a4a68; font-family:'Cormorant Garamond',serif;">Be the first to submit a seed for this character</p>
 		</div>
 	{:else}
 		{#each seeds as seed (seed.id)}

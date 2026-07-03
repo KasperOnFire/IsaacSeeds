@@ -57,7 +57,7 @@
 		</button>
 
 		{#if copied}
-			<span class="text-xs mt-1.5" style="color:#5ab85a; font-family:'Kalam',cursive;">Copied!</span>
+			<span class="text-xs mt-1.5" style="color:#5ab85a; font-family:'Cormorant Garamond',serif;">Copied!</span>
 		{/if}
 
 		<div class="flex-1"></div>
@@ -84,17 +84,17 @@
 				<span style="font-size:0.85rem; color:{star <= seed.difficulty ? '#c9a227' : '#2a1a3e'};">★</span>
 			{/each}
 		</div>
-		<span style="font-family:'Cinzel',serif; font-size:0.65rem; color:#5a4a6a; text-transform:uppercase; letter-spacing:0.06em;">{versionLabel}</span>
+		<span style="font-family:'Cinzel',serif; font-size:0.65rem; color:#9a8aaa; text-transform:uppercase; letter-spacing:0.06em;">{versionLabel}</span>
 	</div>
 
 	<!-- Description -->
 	{#if seed.description}
-		<p class="text-sm leading-relaxed" style="color:#c0b8c8; font-family:'Kalam',cursive;">{seed.description}</p>
+		<p class="text-sm leading-relaxed" style="color:#c0b8c8; font-family:'Cormorant Garamond',serif;">{seed.description}</p>
 	{/if}
 
 	<!-- Notable items -->
 	{#if seed.notable_items}
-		<p class="text-xs italic" style="color:#7a6888; font-family:'Kalam',cursive;">Notable: {seed.notable_items}</p>
+		<p class="text-xs italic" style="color:#7a6888; font-family:'Cormorant Garamond',serif;">Notable: {seed.notable_items}</p>
 	{/if}
 
 	<!-- Tags -->
@@ -116,12 +116,12 @@
 
 	<!-- Footer: date + flag -->
 	<div class="flex items-center gap-2 pt-1.5" style="border-top: 1px solid #1e0f2e;">
-		<span class="text-[10px] flex-1" style="color:#4a3a5a; font-family:'Kalam',cursive;">
+		<span class="text-[10px] flex-1" style="color:#4a3a5a; font-family:'Cormorant Garamond',serif;">
 			{new Date(seed.created).toLocaleDateString()}
 		</span>
 		<button
 			class="text-[10px] cursor-pointer transition-colors"
-			style="color:{flagged ? '#c23b3b' : '#3a2a4a'}; font-family:'Kalam',cursive;"
+			style="color:{flagged ? '#c23b3b' : '#3a2a4a'}; font-family:'Cormorant Garamond',serif;"
 			onmouseenter={(e) => { if (!flagged) (e.currentTarget as HTMLButtonElement).style.color = '#c23b3b'; }}
 			onmouseleave={(e) => { if (!flagged) (e.currentTarget as HTMLButtonElement).style.color = '#3a2a4a'; }}
 			onclick={handleFlag}
