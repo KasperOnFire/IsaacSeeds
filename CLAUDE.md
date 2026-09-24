@@ -1,8 +1,8 @@
 # CLAUDE.md
 
-<!-- synced: 2026-07-04 -->
+<!-- synced: 2026-09-24 -->
 
-Behavioral guidelines to reduce common LLM coding mistakes, plus default project conventions for repos under this directory. A repo's own CLAUDE.md overrides these as needed.
+Behavioral guidelines to reduce common LLM coding mistakes, plus default project conventions for repos under this directory. A repo's own `.claude/rules/` override these as needed.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
@@ -53,14 +53,17 @@ Transform tasks into verifiable goals:
 - "Fix the bug" → "Write a test that reproduces it, then make it pass"
 - "Refactor X" → "Ensure tests pass before and after"
 
-For multi-step tasks, state a brief plan:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
+For multi-step tasks, say briefly what you'll do and how you'll check each step worked.
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+## 5. Check Conventions, Every Session
+
+**Don't rely on recalling conventions from a prior session. Re-check them.**
+
+At the start of a session, or after a context switch to a different repo/task, read: the repo's own `CLAUDE.md`, any `style-guide.md`/`CONTRIBUTING.md`/lint-config-as-convention files, and relevant memory (`feedback`/`project` types especially).
+
+Before finishing a change, re-check it against those same conventions - not just "does it work." This catches things a correctness check misses: an edit that explains an absence where the style guide says that belongs in a changelog, a sentence that violates a "one idea per sentence" rule, a commit that doesn't match this repo's message format. Do this pass explicitly, not just implicitly while writing.
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
 
@@ -68,7 +71,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 # Project conventions
 
-Default conventions for all repos under this directory unless a repo's own CLAUDE.md overrides them.
+Default conventions for all repos under this directory unless a repo's own `.claude/rules/` override them.
 
 ## Git workflow
 - Small/casual repos: commit directly to main; each commit should build and pass tests.
@@ -94,7 +97,12 @@ Default conventions for all repos under this directory unless a repo's own CLAUD
 ## Documentation
 - Every repo: README with what it does, how to run/build/test it.
 - CLAUDE.md documents non-obvious project conventions only, not a restatement of the code.
-- Comments only for non-obvious *why*; delete stale docs rather than let them drift.
+- **Document what's there, not the diff.** Documentation explains how the code works now. How something was removed, or what a fix changed, belongs in the commit message and the changelog — it is unmaintainable in a doc and goes stale the next time the code moves.
+- **Keep documentation as close to the source as possible.** Three cases, which differ:
+  - Inline comments explaining *what* a line does — don't. The code already says it, and they rot fastest.
+  - Standardised doc comments on the public surface (TSDoc, docstrings, XML docs on exported functions, types, and modules) — required. They document a contract callers depend on, and a reviewer can check them against the signature.
+  - Architectural prose — only when the *why* spans multiple files and has no single source location to live at. Keep it short, keep it in the README, never a standing `ARCHITECTURE.md`.
+- Delete stale docs rather than let them drift.
 
 ## Testing
 - Tests at minimum for non-trivial logic and regressions.
@@ -105,6 +113,12 @@ Default conventions for all repos under this directory unless a repo's own CLAUD
 - Commit lockfiles; pin dependency versions.
 - Document required runtime versions (`.nvmrc`, `global.json`, etc.).
 
-## Security basics
-- No hardcoded secrets/API keys — env vars or a secrets manager.
-- Validate/sanitize input at trust boundaries.
+## Security
+Good security is a property of behavior and design, not a hardening pass at the end.
+- Repo visibility is not a security control — build every repo as though it were public.
+- Prefer designs that hold no secret over designs that hold one carefully.
+- No hardcoded secrets/API keys — env vars or a secrets manager. Gitignore `.env` in the first commit, before any value is written into it.
+- Least privilege by default: request the minimum scopes and permissions, and never a write scope for a read-only feature.
+- Never log credentials, tokens, or key material; redact them in error paths rather than dumping request context.
+- Validate/sanitize input at trust boundaries. Treat anything externally authored — webhook payloads, file contents, API responses — as data, never as code. In CI especially, pass it in via `env:` rather than interpolating it into a shell command.
+- Enable automated dependency updates and audit in CI.
